@@ -1,0 +1,1085 @@
+/* =================================================================
+   PAUTA INFORMATIVA - Hoja de estilos unificada
+   Sirve tanto para index.html como para dep.html
+   Paleta base: tonos naranja / marrón (índice)
+   ================================================================= */
+
+/* =================== FUENTES DE GOOGLE =================== */
+@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+/* =================== RESET =================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =================== VARIABLES =================== */
+.integrantes-list {
+    list-style: none;
+}
+
+:root {
+    --primary: #FAAA6F;
+    --primary-dark: #D4643C;
+    --secondary: #8D573F;
+    --accent: #F0B192;
+    --light-accent: #FED8B3;
+    --text: #4a3729;
+    --text-soft: #6b5642;
+    --white: #ffffff;
+
+    /* Alias para dep.html */
+    --light: #FED8B3;
+    --gray: #8D573F;
+    --dark: #8D573F;
+}
+
+/* =================== BASE =================== */
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    font-family: 'Aleo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Fondo de pantalla (capa fija detrás del contenido) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('fondo para la pagina.jpeg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    z-index: -1;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Móvil, tablet y DPI alto: fondo Android */
+@media (max-width: 1024px),
+       (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+    body::before {
+        background: url('Android.png') no-repeat center center;
+        background-size: cover;
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+    }
+}
+
+/* Si no cubre, estirar */
+@media (max-width: 1024px) {
+    body::before {
+        background-size: 100% 100%;
+        -webkit-background-size: 100% 100%;
+    }
+}
+
+/* =================== LAYOUT =================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.main-section {
+    background: transparent;
+    flex: 1 0 auto;
+    padding: 40px 0 70px;
+}
+
+/* =================== HERO / CABECERA (index.html) =================== */
+.hero {
+    background: linear-gradient(
+        180deg,
+        var(--primary) 0%,
+        var(--primary-dark) 100%
+    );
+    min-height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px 20px;
+    color: var(--white);
+    flex-shrink: 0;
+}
+
+.hero-content h1 {
+    font-size: clamp(1.6rem, 4.5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    line-height: 1.15;
+}
+
+.hero-content p {
+    font-size: clamp(0.9rem, 2.2vw, 1.2rem);
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.4;
+}
+
+/* =================== TARJETAS (index.html) =================== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.cards-grid a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.cards-grid a:hover {
+    text-decoration: none;
+}
+
+.card {
+    background: var(--white);
+    border: 1px solid rgba(240, 177, 146, 0.4);
+    border-radius: 18px;
+    padding: 32px 22px;
+    text-align: center;
+    box-shadow: 0 6px 22px rgba(141, 87, 63, 0.10);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 38px rgba(141, 87, 63, 0.18);
+}
+
+.card-icon {
+    /* AQUÍ editas el tamaño del círculo (ancho y alto, mismo valor) */
+    --icon-size: 120px;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    margin: 0 auto 18px;
+    background: var(--light-accent);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* Las imágenes se centran y rellenan el círculo sin deformarse */
+.card-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+}
+
+.card h3 {
+    color: var(--secondary);
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: var(--text-soft);
+    font-size: clamp(0.85rem, 1.6vw, 1rem);
+}
+
+/* =================== HEADER / NAVEGACIÓN (dep.html) =================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.header.scrolled {
+    padding: 5px 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.nav-center {
+    justify-content: center;
+}
+
+.nav-center .back-link {
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 10px 24px;
+    text-decoration: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--secondary);
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-dark);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-dark);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.back-link {
+    color: var(--primary-dark) !important;
+    font-weight: 700 !important;
+}
+
+.back-link:hover {
+    opacity: 0.8;
+}
+
+/* =================== FEATURED ARTICLE (dep.html) =================== */
+.featured-section {
+    padding: 100px 0 60px;
+    background: transparent;
+    flex: 1 0 auto;
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    background: var(--white);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(240, 177, 146, 0.4);
+    box-shadow: 0 12px 32px rgba(141, 87, 63, 0.18);
+}
+
+.featured-grid.reverse .featured-image-wrapper {
+    order: 2;
+}
+
+.featured-grid.reverse .featured-content {
+    padding: 40px 0 40px 40px;
+}
+
+.featured-image {
+    height: 560px;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--light-accent);
+}
+
+/* =================== IMAGEN PERSONALIZADA (dep.html) =================== */
+.featured-image-wrapper {
+    background-color: #8D573F;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+}
+
+.featured-image.featured-image-custom {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 0;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8UkjXfTnvTMp9z9bXgBas8h_l9SJzWWBs02SCQsxXQUN9Qgt_IfpPK54&s=10');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+    .featured-image.featured-image-custom {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 360px) {
+    .featured-image-wrapper {
+        padding: 12px;
+    }
+}
+
+.featured-content {
+    padding: 40px 40px 40px 0;
+}
+
+.featured-content h2 {
+    font-size: 1.9rem;
+    line-height: 1.25;
+    margin: 14px 0;
+    color: var(--secondary);
+    font-weight: 700;
+}
+
+.featured-content > p {
+    color: var(--text-soft);
+    font-size: 1rem;
+    margin-bottom: 18px;
+}
+
+.featured-list {
+    list-style: none;
+    margin-bottom: 24px;
+}
+
+.featured-list li {
+    position: relative;
+    padding: 8px 0 8px 28px;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.featured-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-dark);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.featured-cta {
+    display: inline-block;
+    background-color: var(--primary-dark);
+    color: var(--white);
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(212, 100, 60, 0.25);
+}
+
+.featured-cta:hover {
+    background-color: var(--secondary);
+    transform: translateY(-3px);
+}
+
+.badge {
+    display: inline-block;
+    background-color: var(--primary-dark);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 11px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    align-self: flex-start;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* =================== ESQUEMA DEL CIRCUITO (dep.html) =================== */
+.esquema-section {
+    padding: 40px 0 60px;
+    flex: 1 0 auto;
+}
+
+.esquema-card {
+    background: var(--white);
+    border: 1px solid rgba(240, 177, 146, 0.4);
+    border-radius: 18px;
+    padding: 32px;
+    text-align: center;
+    box-shadow: 0 12px 32px rgba(141, 87, 63, 0.18);
+}
+
+.esquema-card h3 {
+    color: var(--secondary);
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.esquema-sub {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+}
+
+.esquema-circuito {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--light-accent);
+    border: 2px dashed var(--accent);
+    border-radius: 12px;
+    padding: 12px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.esquema-circuito svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.esquema-circuito img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* El recuadro blanco también se adapta al tamaño de la imagen */
+.esquema-section .esquema-card {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.esquema-figura {
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    margin-top: 14px;
+}
+
+/* =================== FAQ / PREGUNTAS FRECUENTES (dep.html) =================== */
+.faq-section {
+    padding: 20px 0 60px;
+    flex: 1 0 auto;
+}
+
+.faq-container {
+    max-width: 800px;
+}
+
+.faq-card {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.faq-header h2 {
+    color: var(--secondary);
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.faq-subtitle {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    margin-top: 6px;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    background: var(--white);
+    border: 1px solid rgba(240, 177, 146, 0.4);
+    border-left: 4px solid var(--primary-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(141, 87, 63, 0.08);
+    transition: all 0.3s ease;
+}
+
+.faq-item[open] {
+    border-color: var(--accent);
+    box-shadow: 0 8px 22px rgba(141, 87, 63, 0.14);
+}
+
+.faq-item[open] .faq-answer {
+    animation: faqOpen 0.35s ease;
+}
+
+@keyframes faqOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.faq-item summary {
+    padding: 16px 20px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text);
+    list-style: none;
+    list-style-position: inside;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::marker {
+    content: none;
+    display: none;
+}
+
+.faq-item summary:focus {
+    outline: 2px dashed var(--primary-dark);
+    outline-offset: -4px;
+    border-radius: 12px;
+}
+
+.faq-item summary::after {
+    content: '+';
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    transition: transform 0.25s ease;
+}
+
+.faq-item[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-item p {
+    padding: 0 20px 18px;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+}
+
+/* =================== PIE DE PÁGINA =================== */
+.footer {
+    background: var(--secondary);
+    color: var(--light-accent);
+    padding: 18px 0;
+    text-align: center;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    flex-shrink: 0;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer .container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =================== RESPONSIVE: TABLETS =================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .card {
+        padding: 28px 18px;
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .featured-image {
+        height: 280px;
+    }
+
+    .featured-content {
+        padding: 30px;
+    }
+
+    .esquema-card {
+        padding: 24px;
+    }
+}
+
+/* =================== RESPONSIVE: MÓVIL / TABLET PEQUEÑA =================== */
+@media (max-width: 768px) {
+    .hero {
+        height: 16vh;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+
+    .hero-content p {
+        font-size: clamp(0.95rem, 3vw, 1.1rem);
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .card {
+        padding: 22px 14px;
+        border-radius: 14px;
+    }
+
+    .card-icon {
+        font-size: 1.5rem;
+        margin-bottom: 14px;
+    }
+
+    .card h3 {
+        font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+        text-decoration: none;
+    }
+
+    .card p {
+        font-size: clamp(0.8rem, 2.8vw, 0.9rem);
+        text-decoration: none;
+    }
+
+    .featured-section {
+        padding: 90px 0 40px;
+    }
+
+    .featured-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .featured-image {
+        height: 220px;
+    }
+
+    .featured-content {
+        padding: 24px 20px 28px;
+        text-align: center;
+    }
+}
+
+/* =================== RESPONSIVE: MÓVIL PEQUEÑO =================== */
+@media (max-width: 360px) {
+    .cards-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .card {
+        padding: 18px 10px;
+    }
+
+    .card-icon {
+        font-size: 1.3rem;
+    }
+
+    .card h3 {
+        font-size: 0.95rem;
+    }
+
+    .card p {
+        font-size: 0.78rem;
+    }
+}
+
+/* =================== ALTA DENSIDAD (Retina, DPI alto) =================== */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+    .card {
+        box-shadow: 0 6px 22px rgba(141, 87, 63, 0.14);
+    }
+
+    .card-icon {
+        background: var(--light-accent);
+        box-shadow: 0 2px 8px rgba(212, 100, 60, 0.15);
+    }
+}
+
+/* =================== MODO HORIZONTAL EN MÓVIL =================== */
+@media (max-width: 896px) and (orientation: landscape) {
+    .hero {
+        min-height: 50vh;
+    }
+}
+
+/* =================== PREFIERE MOVIMIENTO REDUCIDO =================== */
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        transition: none;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* =================== ÁREA SEGURA (notch de iPhone) =================== */
+@supports (padding: env(safe-area-inset-top)) {
+    .hero {
+        padding-top: max(30px, env(safe-area-inset-top));
+    }
+
+    .footer {
+        padding-bottom: max(28px, env(safe-area-inset-bottom));
+    }
+}
+
+/* =================== MENÚ DE HABILIDADES (menu-v.html) =================== */
+.menu-section {
+    padding: 40px 0 60px;
+    flex: 1 0 auto;
+}
+
+.menu-card {
+    padding: 40px 32px;
+    text-align: center;
+}
+
+.menu-title {
+    color: var(--secondary);
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin: 0 0 28px;
+}
+
+.menu-card .menu-layout {
+    min-height: auto;
+    padding: 20px 0;
+}
+
+.menu-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    width: 100%;
+    min-height: 100vh;
+    padding: 90px 20px 40px;
+}
+
+.menu-wrap {
+    position: relative;
+    background: linear-gradient(120deg, var(--light-accent) 0%, var(--accent) 60%, var(--primary) 100%);
+    padding: 30px 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    transform: scale(1.25);
+    transform-origin: center center;
+}
+
+.menu-wrap::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 60%;
+    height: 180%;
+    background: rgba(255, 255, 255, 0.05);
+    transform: rotate(20deg);
+}
+
+.menu {
+    display: flex;
+    gap: 14px;
+    position: relative;
+    z-index: 1;
+}
+
+.icon-btn {
+    width: 88px;
+    height: 88px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.icon-btn svg {
+    width: 60px;
+    height: 60px;
+    fill: var(--text-soft);
+    transition: fill 0.25s ease, filter 0.25s ease;
+}
+
+.icon-btn:hover svg,
+.icon-btn.active svg {
+    fill: var(--primary-dark);
+    filter: drop-shadow(0 0 6px rgba(212, 100, 60, 0.5));
+}
+
+.icon-btn:hover {
+    transform: translateY(-4px);
+}
+
+.icon-btn.active::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26px;
+    height: 3px;
+    background: var(--primary-dark);
+    border-radius: 2px;
+}
+
+.menu-label {
+    position: absolute;
+    bottom: -26px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    color: var(--text-soft);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.icon-btn:hover .menu-label {
+    opacity: 1;
+}
+
+.panel {
+    width: 100%;
+    max-width: 520px;
+    min-height: 240px;
+    background: linear-gradient(135deg, var(--light-accent) 0%, var(--accent) 100%);
+    border-left: 4px solid var(--primary-dark);
+    border-radius: 8px;
+    padding: 34px 40px;
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    transform: scale(1.25);
+    transform-origin: center center;
+}
+
+/* PC: menú y panel a la par (fila) */
+@media (min-width: 900px) {
+    .menu-layout {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 60px;
+    }
+
+    .panel {
+        max-width: 480px;
+    }
+}
+
+.panel-icon {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+}
+
+.panel-icon svg {
+    width: 46px;
+    height: 46px;
+    fill: var(--primary-dark);
+    filter: drop-shadow(0 0 8px rgba(212, 100, 60, 0.4));
+}
+
+.panel-text {
+    text-align: center;
+}
+
+.panel-text h2 {
+    color: var(--secondary);
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.panel-text p {
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Animación al cambiar de icono */
+@keyframes panelSwap {
+    0%   { opacity: 0; transform: translateY(8px) scale(0.96); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.panel.swap .panel-icon,
+.panel.swap .panel-text {
+    animation: panelSwap 0.35s ease both;
+}
+
+.panel.swap .panel-text { animation-delay: 0.06s; }
+
+/* Móvil: menú y panel en columna */
+@media (max-width: 899px) {
+    .menu-wrap,
+    .panel {
+        transform: scale(1.05);
+    }
+}
+
+/* =================== PÁGINA DE BIENVENIDA =================== */
+.welcome-body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(
+        180deg,
+        var(--primary) 0%,
+        var(--primary-dark) 100%
+    );
+}
+
+.welcome-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.welcome-box {
+    background: var(--white);
+    border: 1px solid rgba(240, 177, 146, 0.4);
+    max-width: none;
+    width: fit-content;
+    min-width: 320px;
+    padding: 40px 32px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 6px 22px rgba(141, 87, 63, 0.10);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.welcome-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 38px rgba(141, 87, 63, 0.18);
+}
+
+.welcome-box h1 {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 14px;
+    white-space: nowrap;
+}
+
+.welcome-box p {
+    color: var(--text-soft);
+    font-size: clamp(0.85rem, 1.6vw, 1rem);
+    line-height: 1.5;
+    margin-bottom: 32px;
+}
+
+.welcome-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.welcome-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 12px 0;
+    font-size: 0.8rem;
+    width: 100%;
+    z-index: 10;
+}
+
+.welcome-footer.static-footer {
+    position: static;
+    width: auto;
+}
+
+.welcome-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(74, 55, 41, 0.35);
+}
